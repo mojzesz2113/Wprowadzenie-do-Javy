@@ -2,23 +2,36 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        //losowanie bez powtorzen
-        //kolekcja
-        //w trakcie dzialania programu mozna zmieniac rozmiar kolekcji
-        //kolekcja moze przechowywac tylko typy zlozone
-        //SET - zbior elementy nie beda sie powtarzac
-        //w zbiorze elementy nie sa indeksowane
         Set<Integer> wylosowane = new HashSet<>();
-        while(wylosowane.size()<6){
+        wylosowane = losowanieLiczb(6);
+        List<Integer> wpisane = new ArrayList<>();
+        wpisane = wpisanieLiczb();
+        System.out.println("Wpisane "+wpisane);
+
+        List<Integer> trafione = new LinkedList<>();
+        trafione = podsumowanie(wylosowane, wpisane);
+        System.out.println("Trafione"+trafione);
+    }
+    public static List<Integer> podsumowanie(Set<Integer> wylosowane, List<Integer> wpisane){
+        List<Integer> trafione = new LinkedList<>();
+        for(Integer wpisanaWartosc : wpisane){
+            if(wylosowane.contains(wpisanaWartosc)){
+                trafione.add(wpisanaWartosc);
+            }
+        }
+        return trafione;
+    }
+    public static Set<Integer> losowanieLiczb(int n){
+        Set<Integer> wylosowane = new HashSet<>();
+        while(wylosowane.size()<n){
             wylosowane.add((int)(Math.random()*100+1));
         }
-        //System.out.println("wylosowane:"+wylosowane);
+        return wylosowane;
+    }
 
-        //wczytywanie z klawiatury 6 liczb
+    public static List<Integer> wpisanieLiczb(){
         Scanner klawiatura = new Scanner(System.in);
         List<Integer> wpisane = new ArrayList<>();
-        //lista elementy moga sie powtarzac
-        //lista ma indeksowane elementy
         System.out.println("Podaj 6 liczb");
         for(int i=0;i<6;i++){
             System.out.println("Liczba "+i);
@@ -29,16 +42,6 @@ public class Main {
             }
             wpisane.add(wczytanaWartosc);
         }
-        System.out.println("Wpisane "+wpisane);
-
-        //zapis listy ktora bedzie zawierala elementy
-        //ktore powtarzaja sie w wpisane i wylosowane
-        List<Integer> trafione = new LinkedList<>();
-        for(Integer wpisanaWartosc : wpisane){
-            if(wylosowane.contains(wpisanaWartosc)){
-                trafione.add(wpisanaWartosc);
-            }
-        }
-        System.out.println("Trafione"+trafione);
+        return wpisane;
     }
 }
