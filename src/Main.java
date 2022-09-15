@@ -1,20 +1,18 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
-//losowanie 6 liczb
-        //wpisywanie 6 liczb
-        //wypiszemy liczby wpisane i wylosowane
-        System.out.println("Losowanie 6 liczb");
-
-        //tablica
-        int [] wylosowane = new int[6];
-        //tablice w Javie nie moga miec zmienianego rozmiaru w trakcie dzialania
-        //tablice w Javie przechowuja typy proste lub zlozone
-        for(int i=0;i<wylosowane.length;i++){
-            wylosowane[i] =(int)( Math.random()*100+1);
+        //losowanie bez powtorzen
+        //kolekcja
+        //w trakcie dzialania programu mozna zmieniac rozmiar kolekcji
+        //kolekcja moze przechowywac tylko typy zlozone
+        //SET - zbior elementy nie beda sie powtarzac
+        //w zbiorze elementy nie sa indeksowane
+        Set<Integer> wylosowane = new HashSet<>();
+        for(int i = 0; i<6; i++){
+            wylosowane.add((int)(Math.random()*10));
         }
-        for(int wylosowanaWartosc :wylosowane){
-            System.out.print(wylosowanaWartosc+" ");
-        }
-
+        System.out.println("wylosowane:"+wylosowane);
     }
 }
